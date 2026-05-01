@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoaxGuard - Deteksi Berita Hoax dengan AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>Hoax<span class="highlight">Guard</span></h1>
+            </div>
+            <p class="subtitle">Analisis berita secara instan dengan kecerdasan buatan berbasis LSTM.</p>
+        </header>
+
+        <main>
+            <div class="card glass">
+                <form id="detect-form">
+                    <div class="input-group">
+                        <label for="news-url">Tautan (URL) Berita:</label>
+                        <input type="url" id="news-url" placeholder="https://www.contoh.com/berita-hari-ini" class="text-input" required>
+                    </div>
+                    <p class="tab-helper-text">Sistem akan secara otomatis membaca dan menganalisis keseluruhan isi artikel pada link tersebut.</p>
+
+                    <button type="submit" id="submit-btn" class="btn-primary">
+                        <span class="btn-text">Analisis Berita</span>
+                        <div class="loader hidden" id="loader"></div>
+                    </button>
+                </form>
+            </div>
+
+            <div id="result-container" class="card glass hidden">
+                <h2>Hasil Analisis</h2>
+                <div class="result-header">
+                    <div id="verdict-badge" class="badge">MEMPROSES...</div>
+                </div>
+                
+                <div class="confidence-section">
+                    <p>Tingkat Keyakinan Model:</p>
+                    <div class="progress-bar-bg">
+                        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+                    </div>
+                    <p id="confidence-text" class="confidence-text">0%</p>
+                </div>
+                
+                <div class="extracted-info">
+                    <h3>Detail Berita yang Dianalisis:</h3>
+                    <p><strong>Sumber Media:</strong> <span id="res-publisher">-</span></p>
+                    <p><strong>Judul Berita:</strong> <span id="res-title">-</span></p>
+                    <div class="content-preview">
+                        <strong>Cuplikan Isi:</strong>
+                        <p id="res-content">-</p>
+                    </div>
+                </div>
+
+                <div class="search-references hidden" id="search-references-section">
+                    <h3>Verifikasi Mesin Pencari (Live Fact-Check):</h3>
+                    <div id="references-container" class="references-container">
+                        <!-- References will be injected here -->
+                    </div>
+                </div>
+                
+                <p class="disclaimer">* Hasil ini didasarkan pada model prediksi AI (LSTM) dan penelusuran fakta otomatis. Selalu verifikasi dari sumber resmi secara mandiri.</p>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2026 HoaxGuard | Diberdayakan oleh TensorFlow & Flask</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
